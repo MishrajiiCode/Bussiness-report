@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature H2O Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/css2">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0f2c59; /* Deep Navy */
+            --secondary-color: #189ab4; /* Ocean Blue */
+            --accent-color: #75e6da; /* Soft Cyan */
+            --text-main: #333333;
+            --text-muted: #555555;
+            --bg-color: #f0f4f8;
+            --white: #ffffff;
+            --shadow-soft: 0 20px 60px rgba(15, 44, 89, 0.1);
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 960px;
+            margin: 40px auto;
+            background: var(--white);
+            box-shadow: var(--shadow-soft);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        header {
+            background: var(--primary-color); /* Fallback */
+            color: var(--white);
+            padding: 120px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Slideshow Container */
+        .header-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Individual Slide */
+        .header-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: slideShow 15s infinite;
+        }
+
+        .header-slide:nth-child(1) { animation-delay: 0s; }
+        .header-slide:nth-child(2) { animation-delay: 5s; }
+        .header-slide:nth-child(3) { animation-delay: 10s; }
+
+        @keyframes slideShow {
+            0% { opacity: 0; transform: scale(1); }
+            4% { opacity: 1; }
+            33% { opacity: 1; }
+            37% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 0; }
+        }
+
+        /* Gradient Overlay */
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 44, 89, 0.9) 0%, rgba(5, 68, 94, 0.8) 100%);
+            z-index: 1;
+        }
+
+        /* Header Content */
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        header .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.95;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .header-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 35px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            text-decoration: none;
+            border: 2px solid var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .header-btn:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .meta-info {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* Content Sections */
+        .content-wrapper {
+            padding: 60px 80px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1.15rem;
+        }
+
+        /* Feature Lists */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            margin-bottom: 18px;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 10px;
+            border: solid var(--secondary-color);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: linear-gradient(to right, #f0f8ff, #ffffff);
+            padding: 30px;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+            font-style: italic;
+            color: #444;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            border-left: 5px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .benefit-card h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* Global Text Highlight */
+        .highlight-phrase {
+            background: linear-gradient(120deg, rgba(117, 230, 218, 0.3) 0%, rgba(117, 230, 218, 0.3) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 35%;
+            background-position: 0 85%;
+            color: var(--primary-color);
+            font-weight: 700;
+            padding: 0 2px;
+        }
+
+        /* Gallery Section (Existing) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .gallery-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        /* Tabs & Video */
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            padding: 10px 30px;
+            border: 2px solid var(--secondary-color);
+            background: transparent;
+            color: var(--secondary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            background: #000;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Map Section */
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            margin-top: 20px;
+        }
+
+        .map-container iframe {
+            display: block;
+        }
+
+        .address-text {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Process Steps */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-card);
+            border: 1px solid #f0f0f0;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .step-icon-img {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* CTA Footer */
+        .cta-footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #05445E 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 40px;
+            margin-top: 0;
+        }
+
+        .cta-footer h2 {
+            color: var(--white);
+            border: none;
+            padding: 0;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .cta-footer h2::after {
+            display: none;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 16px 40px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-wrapper { padding: 40px 25px; }
+            header { padding: 40px 20px; }
+            .meta-info { flex-direction: column; gap: 10px; }
+            h1 { font-size: 2rem; }
+        }
+        
+        @media print {
+            body { background-color: white; }
+            .container { box-shadow: none; max-width: 100%; }
+            .cta-button { display: none; }
+            header { -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-slideshow">
+                <div class="header-slide" style="background-image: url('https://placehold.co/1920x800/0f2c59/ffffff?text=Premium+Branded+Water+Experience');"></div>
+                <div class="header-slide" style="background-image: url('https://placehold.co/1920x800/189ab4/ffffff?text=Custom+Labels+For+You');"></div>
+                <div class="header-slide" style="background-image: url('https://placehold.co/1920x800/05445E/ffffff?text=Elevate+Your+Brand');"></div>
+            </div>
+            <div class="header-overlay"></div>
+            <div class="header-content">
+                <h1>Signature H2O</h1>
+                <div class="tagline">"Hydration that builds your brand."</div>
+                <!-- Replace 'Signature_H2O_Proposal.pdf' with your actual PDF file name -->
+                <a href="Water_Becomes_Your_Brand_Asset.pdf" download class="header-btn">Download PDF Proposal</a>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            
+            <!-- Section 1 -->
+            <section id="executive-summary" class="reveal">
+                <h2>1. Executive Summary</h2>
+                <p>
+                    Signature H2O transforms a standard operational expense—packaged drinking water—into a <span class="highlight-phrase">high-value marketing asset</span> for your business. We provide fully customized private-label water bottles that replace generic brands with <span class="highlight-phrase">your brand identity</span>.
+                </p>
+                <div class="highlight-box">
+                    Instead of paying to advertise third-party logos on your tables, our solution allows you to capitalize on this <span class="highlight-phrase">"table-top real estate"</span> to drive customer engagement and elevate your brand experience.
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="problem" class="reveal">
+                <h2>2. The Problem: The "Invisible" Advertisement</h2>
+                <p>Every day, your business serves water to customers. Currently, you likely pay to serve standard retail brands (e.g., Bisleri, Aquafina).</p>
+                <ul>
+                    <li><strong>The Missed Opportunity:</strong> By doing this, you are effectively paying to <span class="highlight-phrase">advertise another company's logo</span> on your own tables.</li>
+                    <li><strong>The Result:</strong> There is <span class="highlight-phrase">zero brand recall</span> for your business once the interaction is over.</li>
+                </ul>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="solution" class="reveal">
+                <h2>3. The Solution: Your Brand, Your Bottle</h2>
+                <p>We replace generic water bottles with Fully Customized Private Label Bottles designed exclusively for you.</p>
+                <ul>
+                    <li><strong>100% Client Focus:</strong> The bottle features <span class="highlight-phrase">your logo, your color palette</span>, and your slogans.</li>
+                    <li><strong>Legal Compliance:</strong> We handle all complex labeling laws. Your brand remains the "hero" on the front.</li>
+                    <li><strong>Marketing Utility:</strong> We turn the bottle into a functional tool using <span class="highlight-phrase">QR codes that link directly</span> to your digital services (menus, reviews, booking portals).</li>
+                </ul>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="benefits" class="reveal">
+                <h2>4. Strategic Benefits (Why Do This?)</h2>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <h3>A. Brand Recall & Exclusivity</h3>
+                        <p>A water bottle typically sits on a customer's table for 30–60 minutes. This creates <span class="highlight-phrase">prolonged visual engagement</span>, signaling attention to detail and a premium service standard.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>B. The "Table-Top Billboard"</h3>
+                        <p>Unlike a flyer that is discarded, a water bottle is held and consumed. We use this engagement to drive goals:</p>
+                        <ul>
+                            <li>Showrooms: "Book a Test Drive"</li>
+                            <li>Restaurants: "Google Reviews"</li>
+                            <li>Hotels: "Room Service"</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>C. Social Media Shareability</h3>
+                        <p>In the age of Instagram, customers love photographing their environments. A customized bottle serves as a <span class="highlight-phrase">subtle "watermark"</span> for your business in user-generated content.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Visual Showcase -->
+            <section id="showcase" class="reveal">
+                <h2>Visualizing the Impact</h2>
+                <p>Here is how Signature H2O integrates seamlessly into different business environments.</p>
+                
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'images-tab')">Image Gallery</button>
+                    <button class="tab-btn" onclick="openTab(event, 'video-tab')">Video Tour</button>
+                </div>
+
+                <div id="images-tab" class="tab-content active">
+                    <div class="gallery-grid">
+                        <div class="gallery-card">
+                            <img src="Gemini_Generated_Image_1swu0p1swu0p1swu.png" alt="Restaurant Table Setup" onclick="openLightbox(this)">
+                            <div class="gallery-caption">Restaurant Experience</div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div id="video-tab" class="tab-content">
+                    <div class="video-container">
+                        <video controls poster="https://placehold.co/1920x1080/0f2c59/ffffff?text=Signature+H2O+Video+Tour">
+                            <source src="खर्च_से_ब्रांडिंग.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7 (Kept numbering consistent with input, though logically 5) -->
+            <section id="process" class="reveal">
+                <h2>7. Our Promise & Process</h2>
+                <p>We provide a seamless experience so you can focus on your business while we handle the hydration.</p>
+                
+                <div class="process-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <span class="step-icon-img">🤝</span>
+                        <strong>Consultation</strong>
+                        <p>We assess your <span class="highlight-phrase">branding needs and volume</span>.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <span class="step-icon-img">🎨</span>
+                        <strong>Free Design Concepts</strong>
+                        <p>We provide <span class="highlight-phrase">3 distinct label concepts</span> at no cost.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <span class="step-icon-img">🛡️</span>
+                        <strong>Safety First</strong>
+                        <p>We ensure all production meets <span class="highlight-phrase">strict FSSAI safety</span> and quality standards.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <span class="step-icon-img">🚚</span>
+                        <strong>Flexible Supply</strong>
+                        <p>We offer <span class="highlight-phrase">low Minimum Order Quantities (MOQs)</span> to support businesses of all sizes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Location -->
+            <section id="location" class="reveal">
+                <h2>Visit Our Office</h2>
+                <p>Find us at our headquarters to discuss your branding needs in person.</p>
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=Vill-%20Anantram%20Patti%20Post-%20HariharPur%20Beaduli%20Dist-%20Mirzapur%20231001%20State%20Uttar%20pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="address-text">
+                    <span id="office-address"><strong>Address:</strong> Vill- Anantram Patti, Post- HariharPur Beaduli, Dist- Mirzapur 231001, State- Uttar Pradesh</span>
+                    <button class="copy-btn" onclick="copyAddress()">Copy Address</button>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="cta-footer">
+            <h2>Ready to see your brand on a bottle?</h2>
+            <p>Let’s create your first draft today.</p>
+            <a href="mailto:rajmishr150@gmail.com" class="cta-button">Contact Us Now</a>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="if(event.target === this) closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
+
+        function copyAddress() {
+            const addressText = document.getElementById('office-address').innerText.replace('Address: ', '');
+            
+            // Create a temporary textarea to handle copying (works better across different contexts)
+            const el = document.createElement('textarea');
+            el.value = addressText;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const btn = document.querySelector('.copy-btn');
+            const originalText = btn.innerText;
+            btn.innerText = "Copied!";
+            btn.style.backgroundColor = "#28a745"; // Green color
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = ""; // Revert to original CSS
+            }, 2000);
+        }
+
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightbox.style.display = 'flex';
+            lightboxImg.src = element.src;
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
