@@ -29,12 +29,14 @@
             padding: 0;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Prevents sticky nav from covering headings */
         }
 
         /* Layout */
         .container {
             max-width: 960px;
-            margin: 40px auto;
+            margin: 100px auto 40px auto; /* Adjusted for sticky nav */
             background: var(--white);
             box-shadow: var(--shadow-soft);
             border-radius: 12px;
@@ -440,6 +442,110 @@
             display: block;
         }
 
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .nav-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Scroll Progress Bar */
+        .progress-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+        }
+        .progress-bar {
+            height: 3px;
+            background: var(--secondary-color);
+            width: 0%;
+        }
+        
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: transform 0.3s;
+            font-size: 30px;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer Extras */
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: opacity 0.3s;
+        }
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
         .address-text {
             text-align: center;
             margin-top: 20px;
@@ -471,6 +577,110 @@
             background-color: var(--primary-color);
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            position: relative;
+            animation: slideDown 0.3s ease;
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 0;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .modal-content h2::after {
+            display: none;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-color);
         }
 
         /* Scroll Animation */
@@ -591,6 +801,21 @@
 </head>
 <body>
 
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Signature H₂O</a>
+            <div class="nav-links">
+                <a href="#executive-summary">About</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#showcase">Gallery</a>
+                <a href="#location">Contact</a>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <header>
             <div class="header-slideshow">
@@ -604,7 +829,6 @@
                 <div class="tagline">"Hydration that builds your brand."</div>
                 <!-- Replace 'Signature_H2O_Proposal.pdf' with your actual PDF file name -->
                 <a href="1.pdf" target="_blank" class="header-btn">View Proposal</a>
-                <a href="1.pdf" download class="header-btn">Download PDF</a>
             </div>
         </header>
 
@@ -750,7 +974,10 @@
         <div class="cta-footer">
             <h2>Ready to see your brand on a bottle?</h2>
             <p>Let’s create your first draft today.</p>
-            <a href="mailto:rajmishr150@gmail.com" class="cta-button">Contact Us Now</a>
+            <a href="mailto:rajmishr150@gmail.com" class="cta-button">Contact Us</a>
+            <div class="footer-bottom">
+                &copy; 2025 Signature H₂O. All rights reserved.
+            </div>
         </div>
     </div>
 
@@ -759,6 +986,12 @@
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img id="lightbox-img" src="">
     </div>
+
+    <a href="https://wa.me/918318785442" class="whatsapp-float" target="_blank">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.967.592 1.971.913 3.022.913h.001c3.178 0 5.765-2.587 5.765-5.766.001-1.539-.599-2.987-1.688-4.077C15.247 7.106 13.799 6.508 12.031 6.172zm-3.132 3.23c.127-.285.276-.292.404-.297.102-.004.234-.005.366-.005.132 0 .346.049.527.443.181.395.618 1.517.671 1.627.053.11.088.239.015.385-.073.146-.11.236-.216.344-.106.108-.223.241-.318.325-.105.094-.215.197-.092.408.123.211.545.901 1.168 1.456.803.715 1.481.936 1.833 1.092.264.117.42.1.576-.078.156-.178.671-.785.85-1.054.179-.269.356-.224.596-.134.24.089 1.517.715 1.777.844.26.129.434.194.496.302.062.108.062.625-.216 1.415-.278.79-1.632 1.534-2.239 1.613-.607.079-1.174.123-3.946-.974-2.659-1.053-4.34-3.729-4.473-3.908-.133-.179-1.066-1.418-1.066-2.705 0-1.287.675-1.92 0.914-2.18.239-.26.51-.325.678-.325z"/>
+        </svg>
+    </a>
 
     <script>
         function openTab(evt, tabName) {
@@ -785,6 +1018,12 @@
                     reveals[i].classList.add("active");
                 }
             }
+            
+            // Scroll Progress Bar Logic
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
         }
         window.addEventListener("scroll", reveal);
         reveal(); // Trigger once on load
